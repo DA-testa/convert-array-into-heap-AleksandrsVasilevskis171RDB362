@@ -1,77 +1,107 @@
 # python3
 from collections import deque
+from distutils.command.check import check
 import heapq
+from this import d
 
-swaps = []
 
-def build_heap(data):
+
+def build_heap ( data, lenth):
+    swops = []
     count = 0
     
-
-    dataLenth = len(data)
-    
+    i = 0
+    last_peak = 0
     check = False
     
-    while(check ==False):
-        i = dataLenth - 1
+    while i <= lenth-1:
+        left = 2*i+1
+        right = 2*i+2    
+        if left == lenth-1:
+            
+            last_peak = i
+            #print("right",last_peak)
+            break
+
+        if  right == lenth-1:
+            last_peak = i
+            print ("left",last_peak)
+            break
+        i=i+1
+
+    
+ 
+
+    while check == False:
+
+        j = last_peak
         check = True
-        while (i >= 0):
+        while j >= 0:
+             
+            if lenth%2 == 0:
+                if j == last_peak:
+                    if int(data[j]) > int(data[2*j+1]):
+                        temp = data[j]
+                        data[j] = data[2*j+1]
+                        data[2*j+1] = temp
+                        count = count +1
+                        check = False
+                        swops.append(j)
+                        swops.append(2*j+1)
+                else:
+                    if int(data[j]) > int(data[2*j+1]) or int(data[j]) > int(data[2*j+2]) :
+  
+                        if int(data[2*j+1]) > int(data[2*j+2]):
+                            temp = data[j]
+                            data[j] = data[2*j+2]
+                            data[2*j+2] = temp
+                            count = count +1
+                            swops.append(j)
+                            swops.append(2*j+2)
+                            check = False
+                        elif int(data[2*j+2]) > int(data[2*j+1]):
+                            temp = data[j]
+                            data[j] = data[2*j+1]
+                            data[2*j+1] = temp
+                            count = count +1
+                            swops.append(j)
+                            swops.append(2*j+1)
+                            check = False
 
-            left = 2*i+1
-            right = 2*i+2
 
-            if left > dataLenth-1 and right > dataLenth-1:
-
-                pass
-            elif left <= dataLenth-1 and right > dataLenth-1:
-                x = data[i]
-                y = data[left]
-                check = False
-                if x > y:
-                    data[i] = y
-                    data[left] = x
-                    count= count+1
-                    string = str(i)+" "+str(left)
-                   # print(count)
-
-                    swaps.append(string)
-                pass
                 
+            else:
 
-            elif left <= dataLenth-1 and right <= dataLenth-1:
-               
-                x = data[i]
-                y = data[left]
-                z = data[right]
+                if int(data[j]) > int(data[2*j+1]) or int(data[j]) > int(data[2*j+2]) :
+  
+                    if int(data[2*j+1]) > int(data[2*j+2]):
+                        temp = data[j]
+                        data[j] = data[2*j+2]
+                        data[2*j+2] = temp
+                        count = count +1
+                        swops.append(j)
+                        swops.append(2*j+2)
+                        check = False
 
-                if x > y and y<z:
-                    check = False
-                    data[i] = y
-                    data[left] = x
-                    count =count+1
-                    string = str(i)+" "+str(left)
-                    #print(count)
-                    swaps.append(string)
-                    pass
-                elif x > z and z < y:
-                    check = False
-                    data[i] = z
-                    data[right] = x
-                    count=count+1
-                    string = str(i)+" "+str(right)
-                    #print(count)
-                    swaps.append(string)
-                pass
+                        pass
+                    elif int(data[2*j+2]) > int(data[2*j+1]):
+                        temp = data[j]
+                        data[j] = data[2*j+1]
+                        data[2*j+1] = temp
+                        count = count +1
+                        swops.append(j)
+                        swops.append(2*j+1)
+                        check = False
+            j = j - 1
 
-            i=i-1
-    swaps.insert(0,str(count))
+    swops.insert(0,count)
+    #print (swops)   
+    #print (data)   
+
+    return swops
+
+       
     
-    # TODO: Creat heap and heap sort
-    # try to achieve  O(n) and not O(n2)
-    
-    #return data
-    
-    return swaps
 
 
 def main(): 
@@ -90,9 +120,11 @@ def main():
         if i == "I":
             n = int(input())
             data = list(map(int, input().split()))
-            listArray=build_heap(data)
-            x=' '.join(listArray)
-            print(x)
+            swops = build_heap(data,n)
+            print (swops)
+            #listArray=build_heap(data,n)
+            #x=' '.join(listArray)
+            
 
         elif i == "F":
              url = r"C:\Users\ReFoxiK\Downloads\convert-array-into-heap-AleksandrsVasilevskis171RDB362-main\convert-array-into-heap-AleksandrsVasilevskis171RDB362-main\tests\04"
@@ -105,26 +137,26 @@ def main():
              for i in arrList:
                 arrListInt.append(int(i)) 
 
-             build_heap(arrListInt)
+             swops = build_heap(arrListInt,elementCount )
+             print (swops)
         else:
             print("ERROR")
     
 
     # checks if lenght of data is the same as the said lenght
-    assert len(data) == n
+    
 
     # calls function to assess the data 
     # and give back all swaps
-    swaps = build_heap(data)
+    
 
     # TODO: output how many swaps were made, 
     # this number should be less than 4n (less than 4*len(data))
 
 
     # output all swaps
-    print(len(swaps))
-    for i, j in swaps:
-        print(i, j)
+    
+    
 
 
 if __name__ == "__main__":
