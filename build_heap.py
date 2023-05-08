@@ -25,7 +25,7 @@ def build_heap ( data, lenth):
 
         if  right == lenth-1:
             last_peak = i
-            print ("left",last_peak)
+            #print ("left",last_peak)
             break
         i=i+1
 
