@@ -70,11 +70,11 @@ def build_heap ( data, lenth):
                             check = False
                         elif int(data[2*j+2]) == int(data[2*j+1]):
                             temp = data[j]
-                            data[j] = data[2*j+2]
-                            data[2*j+2] = temp
+                            data[j] = data[2*j+1]
+                            data[2*j+1] = temp
                             count = count +1
                             swops.append(j)
-                            swops.append(2*j+2)
+                            swops.append(2*j+1)
                             check = False
                             
                         
@@ -105,11 +105,11 @@ def build_heap ( data, lenth):
                         check = False
                     elif int(data[2*j+2]) == int(data[2*j+1]):
                         temp = data[j]
-                        data[j] = data[2*j+2]
-                        data[2*j+2] = temp
+                        data[j] = data[2*j+1]
+                        data[2*j+1] = temp
                         count = count +1
                         swops.append(j)
-                        swops.append(2*j+2)
+                        swops.append(2*j+1)
                         check = False
                         
             j = j - 1
