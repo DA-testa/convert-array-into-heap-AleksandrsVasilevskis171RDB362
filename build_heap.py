@@ -127,7 +127,7 @@ def main():
             
 
         elif i == "F":
-             url = r"C:\Users\ReFoxiK\Downloads\convert-array-into-heap-AleksandrsVasilevskis171RDB362-main\convert-array-into-heap-AleksandrsVasilevskis171RDB362-main\tests\04"
+             url = r"tests/04"
              f = open(url)
              readFileArray = f.read().splitlines()
              elementCount=int(readFileArray[0])
