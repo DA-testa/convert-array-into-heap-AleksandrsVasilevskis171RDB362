@@ -137,7 +137,7 @@ def main():
 
     check =input()
     for i in check:
-        if i == "I":
+        if i[0] == "I":
             n = int(input())
             data = list(map(int, input().split()))
             swops = build_heap(data,n)
@@ -146,7 +146,7 @@ def main():
             #x=' '.join(listArray)
             
 
-        elif i == "F":
+        elif i[0] == "F":
              url = r"tests/04"
              f = open(url)
              readFileArray = f.read().splitlines()
