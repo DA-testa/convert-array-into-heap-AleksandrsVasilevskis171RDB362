@@ -141,7 +141,11 @@ def main():
             n = int(input())
             data = list(map(int, input().split()))
             swops = build_heap(data,n)
-            print (swops)
+            print(swops[0])
+            i = 1
+            while i<len(swops):    
+                print (swops[i])
+                i = i + 1
             #listArray=build_heap(data,n)
             #x=' '.join(listArray)
             
@@ -158,7 +162,12 @@ def main():
                 arrListInt.append(int(i)) 
 
              swops = build_heap(arrListInt,elementCount )
-             print (swops)
+             print(swops[0])
+             i = 1
+             while i<len(swops):
+                    
+                print (swops[i])
+                i = i + 1
         else:
             print("ERROR")
     
