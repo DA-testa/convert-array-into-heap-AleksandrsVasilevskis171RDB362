@@ -1,41 +1,190 @@
 # python3
+from collections import deque
+from distutils.command.check import check
+import heapq
+from this import d
+#kkk
 
 
-def build_heap(data):
-    swaps = []
-    # TODO: Creat heap and heap sort
-    # try to achieve  O(n) and not O(n2)
 
-
-    return swaps
-
-
-def main():
+def build_heap ( data, lenth):
+    swops = []
+    count = 0
     
-    # TODO : add input and corresponding checks
-    # add another input for I or F 
-    # first two tests are from keyboard, third test is from a file
+    i = 0
+    last_peak = 0
+    check = False
+    
+    while i <= lenth-1:
+        left = 2*i+1
+        right = 2*i+2    
+        if left == lenth-1:
+            
+            last_peak = i
+            #print("right",last_peak)
+            break
+
+        if  right == lenth-1:
+            last_peak = i
+            #print ("left",last_peak)
+            break
+        i=i+1
+
+    
+ 
+
+    while check == False:
+
+        j = last_peak
+        check = True
+        while j >= 0:
+             
+            if lenth%2 == 0:
+                if j == last_peak:
+                    if int(data[j]) > int(data[2*j+1]):
+                        temp = data[j]
+                        data[j] = data[2*j+1]
+                        data[2*j+1] = temp
+                        count = count +1
+                        check = False
+                        swops.append(j)
+                        swops.append(2*j+1)
+                else:
+                    if int(data[j]) > int(data[2*j+1]) or int(data[j]) > int(data[2*j+2]) :
+  
+                        if int(data[2*j+1]) > int(data[2*j+2]):
+                            temp = data[j]
+                            data[j] = data[2*j+2]
+                            data[2*j+2] = temp
+                            count = count +1
+                            swops.append(j)
+                            swops.append(2*j+2)
+                            check = False
+                        elif int(data[2*j+2]) > int(data[2*j+1]):
+                            temp = data[j]
+                            data[j] = data[2*j+1]
+                            data[2*j+1] = temp
+                            count = count +1
+                            swops.append(j)
+                            swops.append(2*j+1)
+                            check = False
+                        elif int(data[2*j+2]) == int(data[2*j+1]):
+                            temp = data[j]
+                            data[j] = data[2*j+1]
+                            data[2*j+1] = temp
+                            count = count +1
+                            swops.append(j)
+                            swops.append(2*j+1)
+                            check = False
+                            
+                        
 
 
-    # input from keyboard
-    n = int(input())
-    data = list(map(int, input().split()))
+                
+            else:
+
+                if int(data[j]) > int(data[2*j+1]) or int(data[j]) > int(data[2*j+2]) :
+  
+                    if int(data[2*j+1]) > int(data[2*j+2]):
+                        temp = data[j]
+                        data[j] = data[2*j+2]
+                        data[2*j+2] = temp
+                        count = count +1
+                        swops.append(j)
+                        swops.append(2*j+2)
+                        check = False
+
+                        pass
+                    elif int(data[2*j+2]) > int(data[2*j+1]):
+                        temp = data[j]
+                        data[j] = data[2*j+1]
+                        data[2*j+1] = temp
+                        count = count +1
+                        swops.append(j)
+                        swops.append(2*j+1)
+                        check = False
+                    elif int(data[2*j+2]) == int(data[2*j+1]):
+                        temp = data[j]
+                        data[j] = data[2*j+1]
+                        data[2*j+1] = temp
+                        count = count +1
+                        swops.append(j)
+                        swops.append(2*j+1)
+                        check = False
+                        
+            j = j - 1
+
+    swops.insert(0,count)
+    #print (swops)   
+    #print (data)   
+
+    return swops
+
+       
+    
+
+
+def main(): 
+    #print("hi")
+    x = 3 
+    #print("hi1")
+    y =[9,8,7,6,5,4,3,2,1]
+    #print("hi2")
+    #build_heap(y)
+   # print("hi3")
+    
+    #print(listArray)
+
+    check =input()
+    for i in check:
+        if i[0] == "I":
+            n = int(input())
+            data = list(map(int, input().split()))
+            swops = build_heap(data,n)
+            print(swops[0])
+            j = 1
+            while j<len(swops)-1:
+                print (swops[j],swops[j+1])
+                j = j + 1
+            #listArray=build_heap(data,n)
+            #x=' '.join(listArray)
+            
+
+        elif i[0] == "F":
+             url = r"tests/04"
+             f = open(url)
+             readFileArray = f.read().splitlines()
+             elementCount=int(readFileArray[0])
+             arrList = readFileArray[1]
+             arrList = arrList.split()
+             arrListInt = []
+             for i in arrList:
+                arrListInt.append(int(i)) 
+
+             swops = build_heap(arrListInt,elementCount )
+             print(swops[0])
+             j = 1
+             while j<len(swops)-1:        
+              print (swops[j],swops[j+1])
+              j = j + 1
+        else:
+            print("ERROR")
+    
 
     # checks if lenght of data is the same as the said lenght
-    assert len(data) == n
+    
 
     # calls function to assess the data 
     # and give back all swaps
-    swaps = build_heap(data)
+    
 
     # TODO: output how many swaps were made, 
     # this number should be less than 4n (less than 4*len(data))
 
 
     # output all swaps
-    print(len(swaps))
-    for i, j in swaps:
-        print(i, j)
+    
+    
 
 
 if __name__ == "__main__":
