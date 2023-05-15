@@ -143,8 +143,8 @@ def main():
             swops = build_heap(data,n)
             print(swops[0])
             j = 1
-            while i<len(swops)-1:
-                print (swops[i],swops[j+1])
+            while j<len(swops)-1:
+                print (swops[j],swops[j+1])
                 j = j + 1
             #listArray=build_heap(data,n)
             #x=' '.join(listArray)
