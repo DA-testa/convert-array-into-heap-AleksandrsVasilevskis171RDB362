@@ -144,7 +144,7 @@ def main():
             print(swops[0])
             i = 1
             while i<len(swops):    
-                print (swops[i])
+                print (swops[i],swops[i+1])
                 i = i + 1
             #listArray=build_heap(data,n)
             #x=' '.join(listArray)
@@ -166,7 +166,7 @@ def main():
              i = 1
              while i<len(swops):
                     
-                print (swops[i])
+                print (swops[i],swops[i+1])
                 i = i + 1
         else:
             print("ERROR")
